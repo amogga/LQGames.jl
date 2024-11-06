@@ -13,7 +13,7 @@ module Linearization
 		LinearizedSystem(A,B)
 	end
 
-	function linearize_discretize(sys,x,u,ts=0.1,t=nothing)
+	function linearize_discretize(sys,x,u,ts=0.25,t=nothing)
 		discretize(linearize(sys,x,u),ts)
 	end
 end
