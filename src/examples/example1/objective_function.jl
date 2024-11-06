@@ -3,7 +3,7 @@ include("../../structs/player.jl")
 using .Cost
 
 function obj_func(player,states,input)
-	if player isa Main.Example1.PlayerT1
+	if player isa PlayerT1
 		obj_func1(player, states, input)
 	else
 		obj_func2(player, states, input)

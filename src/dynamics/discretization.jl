@@ -4,11 +4,9 @@ module Discretization
 
 	export discretize
 
-	function discretize(linear_sys,ts)
-		a = linear_sys.sys_matrix
-		b = linear_sys.inp_matrix
-		ad = I + ts * a
-		bd = ts * b
+	function discretize(lin_sys,ts)
+		ad = I + ts * lin_sys.A
+		bd = ts * lin_sys.B
 		LinearizedDiscreteSystem(ad,bd,ts)
 	end
 end
