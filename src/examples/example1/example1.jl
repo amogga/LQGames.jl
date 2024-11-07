@@ -10,6 +10,7 @@ module Example1
 	include("../../solver/lq_game.jl")
 	include("../../objective_function/quadratization.jl")
 	
+	using Plots
 	using .Quadratization
 	using .Linearization
 	using .Discretization
@@ -114,7 +115,22 @@ module Example1
 		return reduce(vcat,sum(map(total_cost_for_players,x,u),dims=1))
 	end
 
-	
+	function plot_positions_from_iteration(iteration)
+		x, _ = iteration
+		posx1, posy1, posx2, posy2, posx3, posy3 = map(pos->getindex.(x,pos),[1,2,5,6,9,10])
+		plot!(posx1,posy1)
+		plot!(posx2,posy2)
+		plot!(posx3,posy3)
 
-	export total_cost_for_players_per_iteration, solve_nonlinear_dynamics, generate_initial_state_input_pair, compute_reverse_discrete_linear_dynamics_costs, overall_solver
+		# plot goal
+		scatter!([6],[35], markercolor=:blue)
+		scatter!([12],[12], markercolor=:red)
+		scatter!([15],[21], markercolor=:green)
+
+		gui()
+		println("Press Enter to close the plot window...")
+		readline()
+	end
+
+	export total_cost_for_players_per_iteration, plot_positions_from_iteration, overall_solver
 end
