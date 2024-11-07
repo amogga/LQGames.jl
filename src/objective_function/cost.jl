@@ -2,7 +2,6 @@ module Cost
 	include("../algorithms/basic.jl")
 	
 	using LinearAlgebra
-	using Distances
 
 	export goal_cost, 
 		   max_velocity_cost, min_velocity_cost, nom_velocity_cost, 
@@ -13,7 +12,7 @@ module Cost
 		pos_i = player.state_index.position
 		goal_pos = player.cost_info.goal_position
 		
-		return sqeuclidean(states[pos_i], goal_pos)
+		return norm(states[pos_i] - goal_pos)^2
 	end
 
 	function max_velocity_cost(player,states)
@@ -47,11 +46,7 @@ module Cost
 		pline_cost = polyline_cost(player,states)
 		pline_boundary_threshold = player.cost_info.polyline_boundary
 
-		if pline_cost > pline_boundary_threshold 
-			pline_cost
-		else
-			0
-		end
+		return pline_cost > pline_boundary_threshold ? pline_cost : 0
 	end
 
 	function proximity_cost(player, states)
@@ -64,7 +59,7 @@ module Cost
 		prox = player.cost_info.proximity
 
 		return pos_others |> 
-					(positions -> map(pos_o -> euclidean(pos_ego, pos_o), positions)) |> 
+					(positions -> map(pos_o -> norm(pos_ego - pos_o), positions)) |> 
 					(distances -> map(d -> min(d - prox, 0)^2, distances)) |> 
 					sum
 	end
