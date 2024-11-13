@@ -4,9 +4,20 @@ module Quadratization
 
 	using ForwardDiff: gradient, hessian
 
-	export quadratize
+	export quadratize_costs_for_players
 
-	function quadratize(totalcost, player, states::Vector{Float64}, input::Vector{Float64})
+	function quadratize_costs_for_players(totalcost, players, states::Vector{Float64}, input::Vector{Float64})
+		qs = []; ls = []; rss = [];
+		for p in players
+			cost = quadratize_cost_for_player(totalcost, p, states, input)
+			push!(qs,cost.Q)
+			push!(ls,cost.l)
+			push!(rss,cost.Rs)
+		end
+		return QuadratizedMultiCost(qs,ls,rss)
+	end
+
+	function quadratize_cost_for_player(totalcost, player, states::Vector{Float64}, input::Vector{Float64})
 		sth = state_hessian(totalcost, player, states, input)
 		stg = state_gradient(totalcost, player, states, input)
 		
