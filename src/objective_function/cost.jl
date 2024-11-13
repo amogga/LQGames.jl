@@ -4,7 +4,7 @@ module Cost
 	using LinearAlgebra
 
 	export goal_cost, 
-		   max_velocity_cost, min_velocity_cost, nom_velocity_cost, 
+		   max_velocity_cost, min_velocity_cost, nom_velocity_cost, nom_heading_cost,
 		   proximity_cost,
 		   polyline_cost, polyline_boundary_cost
 	 
@@ -34,6 +34,13 @@ module Cost
 		nom_vel = player.cost_info.nom_velocity
 
 		return (states[vel_i] - nom_vel) ^ 2
+	end
+
+	function nom_heading_cost(player, states)
+		heading_i = player.state_index.psi
+		nom_heading = player.cost_info.nom_heading
+
+		return (states[heading_i] - nom_heading) ^ 2
 	end
 
 	function polyline_cost(player,states)
