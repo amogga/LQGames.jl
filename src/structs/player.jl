@@ -18,3 +18,19 @@ struct PlayerT2 <: PlayerType
 	state_cost_weight::StateCostWeightT2
 	input_cost_weight::InputCostWeightT2
 end
+
+struct PlayerT3 <: PlayerType
+	state_index::StateIndexT1
+	input_index::InputIndexT1
+	cost_info::CostInfoT3
+	state_cost_weight::StateCostWeightT3
+	input_cost_weight::InputCostWeightT1
+end
+
+struct PlayerT4 <: PlayerType
+	state_index::StateIndexT1
+	input_index::InputIndexT1
+	cost_info::CostInfoT4
+	state_cost_weight::StateCostWeightT4
+	input_cost_weight::InputCostWeightT1
+end

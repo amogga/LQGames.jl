@@ -16,6 +16,23 @@ struct StateCostWeightT2
 	proximity::Float64
 end
 
+struct StateCostWeightT3
+	nom_velocity::Float64
+	polyline::Float64
+	polyline_boundary::Float64
+	proximity::Float64
+end
+
+struct StateCostWeightT4
+	nom_velocity::Float64
+	nom_heading::Float64
+	polyline::Float64
+	polyline_boundary::Float64
+	proximity::Float64
+end
+
+
+# Inputs
 struct InputCostWeightT1
 	angular_velocity::Float64
 	acceleration::Float64

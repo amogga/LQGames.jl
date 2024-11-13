@@ -16,3 +16,20 @@ struct CostInfoT2
 	nom_velocity::Float64
 	proximity::Float64
 end
+
+
+struct CostInfoT3
+	nom_velocity::Float64
+	proximity::Float64
+	polyline::Vector{Vector{Float64}}
+	polyline_boundary::Float64
+end
+
+
+struct CostInfoT4
+	nom_velocity::Float64
+	nom_heading::Float64
+	proximity::Float64
+	polyline::Vector{Vector{Float64}}
+	polyline_boundary::Float64
+end

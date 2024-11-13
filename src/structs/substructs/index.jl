@@ -6,13 +6,13 @@ struct StateIndexT1
 end
 
 struct InputIndexT1
-	all_inputs::Vector{Vector{Int}}
 	angular_velocity::Int
 	acceleration::Int
+	all_inputs::Vector{Vector{Int}}
 end
 
 struct InputIndexT2
-	all_inputs::Vector{Vector{Int}}
 	steering_angle::Int
 	acceleration::Int
+	all_inputs::Vector{Vector{Int}}
 end
