@@ -3,10 +3,8 @@ module ODESolve
 	
 	export nonlinear_solve
 
-	function nonlinear_solve(sys,xi,u,t=0.25)
+	function nonlinear_solve(sys,xi,u,t)
 		problem = ODEProblem(sys, xi, (0,t),u)
-		state_response = solve(problem,RK4())
-
-		state_response(t)
+		solve(problem, RK4())(t)
 	end
 end
