@@ -25,12 +25,14 @@ module Example2
 	# System Dynamics
 	function multiplayer_dynamic_system(x, u, t=nothing)
 		dyn = [Model.car,Model.car,Model.car]
-	    Simulation.multiplayer_dynamic_system(x,u,t; dynamic_models = dyn, pstate_cnt = 4, pinput_cnt = 2)
+		player_state_count = 4
+		player_input_count = 2
+	    Simulation.multiplayer_dynamic_system(x,u,t; dynamic_models = dyn, pstate_cnt = player_state_count, pinput_cnt = player_input_count)
 	end
 
 	# simulation solver
 	function overall_solver(states,input; iterations_count, sample, maxtime)
-		Simulation.overall_solver(states,input; iterations_count=iterations_count, sample=sample, maxtime=maxtime,mpl_sys=multiplayer_dynamic_system,pls=players,objfn = obj_func)
+		Simulation.overall_solver(states,input; iterations_count=iterations_count, sample=sample, maxtime=maxtime,mpl_sys=multiplayer_dynamic_system,pls=players,objfn=obj_func)
 	end
 
 	# Quadratization
