@@ -7,7 +7,7 @@ function obj_func(player,states,input)
     intgoul = player.input_cost_weight
 
     # progress
-    stgoul.goal * goal_cost(player, states) +
+    # stgoul.goal * goal_cost(player, states) +
 
     # stay in lane
     stgoul.polyline * polyline_cost(player, states) + 
@@ -16,6 +16,7 @@ function obj_func(player,states,input)
     # stay within speed bounds
     stgoul.max_velocity * max_velocity_cost(player, states) + 
     stgoul.min_velocity * min_velocity_cost(player, states) + 
+    stgoul.nom_velocity * nom_velocity_cost(player, states) + 
 
     # avoid collisions
     stgoul.proximity * proximity_cost(player, states) + 
